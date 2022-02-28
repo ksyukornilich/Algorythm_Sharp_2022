@@ -1,38 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace CourseApp.Module2
 {
     public class BubbleSort
     {
-        public static void BubbleSortMethod()
+        public static void Sort()
         {
-            int n = int.Parse(Console.ReadLine());
-            string s = Console.ReadLine();
-            string[] sValues = s.Split(' ');
-            int[] arr = new int[n];
-            for (int i = 0; i < n; i++)
+            var countElems = Convert.ToInt32(Console.ReadLine());
+            var array = new int[countElems];
+            var inputStrings = Console.ReadLine().Split();
+            for (var i = 0; i < countElems; i++)
             {
-                arr[i] = int.Parse(sValues[i]);
+                array[i] = Convert.ToInt32(inputStrings[i]);
             }
 
-            for (int i = 0; i < arr.Length - 1; i++)
+            var sb = new StringBuilder();
+            var swaps = false;
+            for (var i = 0; i < array.Length; ++i)
             {
-                for (int j = 0; j < arr.Length - i - 1; j++)
+                for (var j = 0; j < array.Length - i - 1; ++j)
                 {
-                    if (arr[j] > arr[j + 1])
+                    if (array[j] > array[j + 1])
                     {
-                        // int temp = arr[j];
-                        // arr[j] = arr[j + 1];
-                        // arr[j+1] = temp;
-                        (arr[j], arr[j + 1]) = (arr[j + 1], arr[j]);
+                        (array[j], array[j + 1]) = (array[j + 1], array[j]);
+                        Console.WriteLine("{0}", sb.AppendJoin(" ", array));
+                        sb.Clear();
+                        swaps = true;
                     }
                 }
             }
 
-            string result = string.Join(" ", arr);
-            Console.WriteLine(result);
+            if (swaps == false)
+            {
+                Console.WriteLine(0);
+            }
         }
     }
 }
